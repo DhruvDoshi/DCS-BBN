@@ -1,0 +1,65 @@
+storinng data with pickkle
+date 4/6
+file open 
+blockchain.py
+blockchain.p
+blockchain.txt
+
+
+video no 107 [08/12]
+timing 4:16
+
+
+date 6/6
+worken on the file and hashing structure of the system
+made system hashing and blocking in structural form
+time : 1hr
+
+
+
+date 7/6
+woking on picke and sytems
+adding error handlers to blockchain
+6/7
+video 117
+timing 1:02
+
+
+video adding a transaction class
+video no 132
+timings from start
+
+
+
+
+
+
+
+date 10/06
+adding transaction class
+no 132
+
+
+
+
+date 11/06
+adding a transaction class
+trying to solve and complete the errors.
+
+
+going across an error error of enumeration which is not able to be solved
+now thinking to solve that by whole backtracking of the error 
+lets see what can be done!
+
+date 15/06/19
+Enumeration Error
+
+
+
+setting up routes to manage wallet
+
+date 18/06/2019
+video no 175
+time 10:55
+optional configuration of ui creatiing a wallet
+
