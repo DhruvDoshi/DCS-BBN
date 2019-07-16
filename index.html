@@ -1,344 +1,369 @@
-''''
-here we are having multiple error codes registered
-wich are enlisted here or visit http errors page on google
-'200' : 'Standard response for successful HTTP requests. The actual response will depend
-         on the request method used. In a GET request, the response will contain an entity 
-         corresponding to the requested resource. In a POST request, the response will contain
-         an entity describing or containing the result of the action.[9]'
+<!-- 
+    This is the integral part of the ui where we manage whole system of the blockchain
+    of mining and displaying the blockchain and working with the transaction and mining 
+    the system coins and transfering the funds.
+ -->
 
-'201'  : 'The request has been fulfilled, resulting in the creation of a new resource.'
-'400'  : 'Bad Request
-        The server cannot or will not process the request due to an 
-        apparent client error (e.g., malformed request syntax, size too large,
-        invalid request message framing, or deceptive request routing)'
-'500'  :  Internal Server Error
-        A generic error message, given when an unexpected 
-        condition was encountered and no more specific message is suitable
+<!DOCTYPE html>
+<html lang="en">
 
-to run the server before localhost in browser , we need to run this node.py file
-to load as default port (5000) no go for it directly
-python node.py
-to load any specific port no 
-python node.py -p (Any port no)
-python node.py -p 5001
-
-use case = "Major use"
-made: 1/6
-no_of updated = 127
-last_update: 23/6
-
-
-
-'''
-
-#here we always jsonify the output and then and only then we are sending the data to the user interface
-#for data encapsulation and this is also helped by hexification
-#here we are using flask framework to make web ui
-
-from flask import Flask, jsonify, request, send_from_directory
-from flask_cors import CORS
-
-from wallet import Wallet
-from blockchain import Blockchain
-
-app = Flask(__name__)
-# wallet = Wallet()
-# blockchain = Blockchain(wallet.public_key)
-#reason: here we are moving them to if section line app 250 now they are going to be execuited 
-#first so no error would be generated
-CORS(app)
-
-
-@app.route('/', methods=['GET'])
-def get_node_ui():
-    return send_from_directory('ui', 'node.html')
-
-
-@app.route('/network', methods=['GET'])
-def get_network_ui():
-    return send_from_directory('ui', 'network.html')
-
-
-@app.route('/wallet', methods=['POST'])
-def create_keys():
-    wallet.create_keys()
-    if wallet.save_keys():
-        global blockchain
-        blockchain = Blockchain(wallet.public_key, port)
-        response = {
-            'public_key': wallet.public_key,
-            'private_key': wallet.private_key,
-            'funds': blockchain.get_balance()
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Blockchain Management</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4"
+        crossorigin="anonymous">
+    <style>
+        .lds-ring {
+            display: inline-block;
+            position: relative;
+            width: 64px;
+            height: 64px;
         }
-        return jsonify(response), 201
-    else:
-        response = {
-            'message': 'Saving the keys failed.'
+
+        .lds-ring div {
+            box-sizing: border-box;
+            display: block;
+            position: absolute;
+            width: 51px;
+            height: 51px;
+            margin: 6px;
+            border: 6px solid #fa923f;
+            border-radius: 50%;
+            animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+            border-color: #fa923f transparent transparent transparent;
         }
-        return jsonify(response), 500
 
-
-@app.route('/wallet', methods=['GET'])
-def load_keys():
-    if wallet.load_keys():
-        global blockchain
-        blockchain = Blockchain(wallet.public_key, port)
-        response = {
-            'public_key': wallet.public_key,
-            'private_key': wallet.private_key,
-            'funds': blockchain.get_balance()
+        .lds-ring div:nth-child(1) {
+            animation-delay: -0.45s;
         }
-        return jsonify(response), 201
-    else:
-        response = {
-            'message': 'Loading the keys failed.'
+
+        .lds-ring div:nth-child(2) {
+            animation-delay: -0.3s;
         }
-        return jsonify(response), 500
 
-
-@app.route('/balance', methods=['GET'])
-def get_balance():
-    balance = blockchain.get_balance()
-    if balance != None:
-        response = {
-            'message': 'Fetched balance successfully.',
-            'funds': balance
+        .lds-ring div:nth-child(3) {
+            animation-delay: -0.15s;
         }
-        return jsonify(response), 200
-    else:
-        response = {
-            'messsage': 'Loading balance failed.',
-            'wallet_set_up': wallet.public_key != None
-        }
-        return jsonify(response), 500
 
-
-@app.route('/broadcast-transaction', methods=['POST'])
-def broadcast_transaction():
-    values = request.get_json()
-    if not values:
-        response = {
-            'message': 'No data found.'
+        @keyframes lds-ring {
+            0% {
+                transform: rotate(0deg);
             }
-        return jsonify(response), 400
-    required = ['sender', 'recipient', 'amount', 'signature']
-    if not all(key in values for key in required):
-        response = {
-            'message': 'Some data is missing.'
-            }
-        return jsonify(response), 400
-    success = blockchain.add_transaction(
-        values['recipient'], values['sender'], values['signature'], values['amount'], is_receiving=True)
-    if success:
-        response = {
-            'message': 'Successfully added transaction.',
-            'transaction': {
-                'sender': values['sender'],
-                'recipient': values['recipient'],
-                'amount': values['amount'],
-                'signature': values['signature']
+            100% {
+                transform: rotate(360deg);
             }
         }
-        return jsonify(response), 201
-    else:
-        response = {
-            'message': 'Creating a transaction failed.'
-        }
-        return jsonify(response), 500
+    </style>
+</head>
 
+<body>
+    <div id="app">
+        <div class="container">
+            <div class="row mb-3">
+                <div class="col">
+                    <h1>Manage your Blockchain</h1>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <ul class="nav nav-pills">
+                        <li class="nav-item">
+                            <a class="nav-link active" href="/">Wallet &amp; Node</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/network">Network</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <hr>
+            <div v-if="error" class="alert alert-danger" role="alert">
+                {{ error }}
+            </div>
+            <div v-if="success" class="alert alert-success" role="alert">
+                {{ success }}
+            </div>
+            <div class="row">
+                <div class="col">
+                    <div v-if="!walletLoading">
+                        <button class="btn btn-primary" @click="onCreateWallet">
+                            Create new Wallet
+                        </button>
+                        <button class="btn btn-primary" @click="onLoadWallet">
+                            Load Wallet
+                        </button>
+                    </div>
 
-@app.route('/broadcast-block', methods=['POST'])
-def broadcast_block():
-    values = request.get_json()
-    if not values:
-        response = {
-            'message': 'No data found.'
-            }
-        return jsonify(response), 400
-    if 'block' not in values:
-        response = {
-            'message': 'Some data is missing.'
-            }
-        return jsonify(response), 400
-    block = values['block']
-    if block['index'] == blockchain.chain[-1].index + 1:
-        if blockchain.add_block(block):
-            response = {
-                'message': 'Block added'
+                    <div v-if="walletLoading" class="lds-ring">
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                    </div>
+                </div>
+                <div class="col text-right">
+                    <h2>Funds: {{ funds.toFixed(2) }}</h2>
+                </div>
+            </div>
+            <hr>
+            <div v-if="!wallet" class="row">
+                <div class="col">
+                    <div class="alert alert-warning">Create a Wallet to start sending coins or to mine coins!</div>
+                </div>
+            </div>
+            <div v-if="wallet" class="row">
+                <div class="col">
+                    <form @submit.prevent="onSendTx">
+                        <div class="form-group">
+                            <label for="recipient">Recipient Key</label>
+                            <input v-model="outgoingTx.recipient" type="text" class="form-control" id="recipient" placeholder="Enter key">
+                        </div>
+                        <div class="form-group">
+                            <label for="amount">Amount of Coins</label>
+                            <input v-model.number="outgoingTx.amount" type="number" step="0.001" class="form-control" id="amount">
+                            <small class="form-text text-muted">Fractions are possible (e.g. 5.67)</small>
+                        </div>
+                        <div v-if="txLoading" class="lds-ring">
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                        </div>
+                        <button :disabled="txLoading || outgoingTx.recipient.trim() === '' || outgoingTx.amount <= 0" type="submit" class="btn btn-primary">Send</button>
+                    </form>
+                </div>
+            </div>
+            <hr>
+            <div class="row">
+                <div class="col">
+                    <ul class="nav nav-tabs">
+                        <li class="nav-item">
+                            <a class="nav-link" :class="{active: view === 'chain'}" href="#" @click="view = 'chain'">Blockchain</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" :class="{active: view === 'tx'}" href="#" @click="view = 'tx'">Open Transactions</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="row my-3">
+                <div class="col">
+                    <button class="btn btn-primary" @click="onLoadData">{{ view === 'chain' ? 'Load Blockchain' : 'Load Transactions' }}</button>
+                    <button v-if="view === 'chain' && wallet" class="btn btn-success" @click="onMine">Mine Coins</button>
+                    <button class="btn btn-warning" @click="onResolve">Resolve Conflicts</button>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <div v-if="dataLoading" class="lds-ring">
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                    </div>
+                    <div v-if="!dataLoading" class="accordion">
+                        <div class="card" v-for="(data, index) in loadedData">
+                            <div v-if="view === 'chain'" class="card-header">
+                                <h5 class="mb-0">
+                                    <button class="btn btn-link" type="button" @click="showElement === index ? showElement = null : showElement = index">
+                                        Block #{{ data.index }}
+                                    </button>
+                                </h5>
+                            </div>
+                            <div v-if="view === 'chain'" class="collapse" :class="{show: showElement === index}">
+                                <div class="card-body">
+                                    <p>Previous Hash: {{ data.previous_hash }}</p>
+                                    <div class="list-group">
+                                        <div v-for="tx in data.transactions" class="list-group-item flex-column align-items-start">
+                                            <div>Sender: {{ tx.sender }}</div>
+                                            <div>Recipient: {{ tx.recipient }}</div>
+                                            <div>Amount: {{ tx.amount }}</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div v-if="view === 'tx'" class="card-header">
+                                <h5 class="mb-0">
+                                    <button class="btn btn-link" type="button" @click="showElement === index ? showElement = null : showElement = index">
+                                        Transaction #{{ index }}
+                                    </button>
+                                </h5>
+                            </div>
+                            <div v-if="view === 'tx'" class="collapse" :class="{show: showElement === index}">
+                                <div class="card-body">
+                                    <div class="list-group">
+                                        <div class="list-group-item flex-column align-items-start">
+                                            <div>Sender: {{ data.sender }}</div>
+                                            <div>Recipient: {{ data.recipient }}</div>
+                                            <div>Amount: {{ data.amount }}</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                blockchain: [],
+                openTransactions: [],
+                wallet: null,
+                view: 'chain',
+                walletLoading: false,
+                txLoading: false,
+                dataLoading: false,
+                showElement: null,
+                error: null,
+                success: null,
+                funds: 0,
+                outgoingTx: {
+                    recipient: '',
+                    amount: 0
                 }
-            return jsonify(response), 201
-        else:
-            response = {
-                'message': 'Block seems invalid.'
-                }
-            return jsonify(response), 409
-    elif block['index'] > blockchain.chain[-1].index:
-        response = {
-            'message': 'Blockchain seems to differ from local blockchain.'
-            }
-        blockchain.resolve_conflicts = True
-        return jsonify(response), 200
-    else: 
-        response = {
-            'message': 'Blockchain seems to be shorter, block not added'
-            }
-        return jsonify(response), 409
-
-
-@app.route('/transaction', methods=['POST'])
-def add_transaction():
-    if wallet.public_key == None:
-        response = {
-            'message': 'No wallet set up.'
-        }
-        return jsonify(response), 400
-    values = request.get_json()
-    if not values:
-        response = {
-            'message': 'No data found.'
-        }
-        return jsonify(response), 400
-    required_fields = ['recipient', 'amount']
-    if not all(field in values for field in required_fields):
-        response = {
-            'message': 'Required data is missing.'
-        }
-        return jsonify(response), 400
-    recipient = values['recipient']
-    amount = values['amount']
-    signature = wallet.sign_transaction(wallet.public_key, recipient, amount)
-    success = blockchain.add_transaction(
-        recipient, wallet.public_key, signature, amount)
-    if success:
-        response = {
-            'message': 'Successfully added transaction.',
-            'transaction': {
-                'sender': wallet.public_key,
-                'recipient': recipient,
-                'amount': amount,
-                'signature': signature
             },
-            'funds': blockchain.get_balance()
-        }
-        return jsonify(response), 201
-    else:
-        response = {
-            'message': 'Creating a transaction failed.'
-        }
-        return jsonify(response), 500
-
-
-@app.route('/mine', methods=['POST'])
-def mine():
-    if blockchain.resolve_conflicts:
-        response = {
-            'message': 'Resolve conflicts first, block not added!'
+            computed: {
+                loadedData: function () {
+                    if (this.view === 'chain') {
+                        return this.blockchain;
+                    } else {
+                        return this.openTransactions;
+                    }
+                }
+            },
+            methods: {
+                onCreateWallet: function () {
+                    // Send Http request to create a new wallet (and return keys)
+                    var vm = this;
+                    this.walletLoading = true
+                    axios.post('/wallet')
+                        .then(function (response) {
+                            vm.error = null;
+                            vm.success = 'Created Wallet! Public Key: ' + response.data.public_key + ', Private Key: ' + response.data.private_key;
+                            vm.wallet = {
+                                public_key: response.data.public_key,
+                                private_key: response.data.private_key
+                            }
+                            vm.funds = response.data.funds;
+                            vm.walletLoading = false
+                        })
+                        .catch(function (error) {
+                            vm.success = null;
+                            vm.error = error.response.data.message
+                            vm.wallet = null
+                            vm.walletLoading = false
+                        });
+                },
+                onLoadWallet: function () {
+                    // Send Http request to load an existing wallet (from a file on the server)
+                    var vm = this;
+                    this.walletLoading = true
+                    axios.get('/wallet')
+                        .then(function (response) {
+                            vm.error = null;
+                            vm.success = 'Created Wallet! Public Key: ' + response.data.public_key + ', Private Key: ' + response.data.private_key;
+                            vm.wallet = {
+                                public_key: response.data.public_key,
+                                private_key: response.data.private_key
+                            }
+                            vm.funds = response.data.funds;
+                            vm.walletLoading = false;
+                        })
+                        .catch(function (error) {
+                            vm.success = null;
+                            vm.error = error.response.data.message;
+                            vm.wallet = null;
+                            vm.walletLoading = false;
+                        });
+                },
+                onSendTx: function () {
+                    // Send Transaction to backend
+                    this.txLoading = true;
+                    var vm = this;
+                    axios.post('/transaction', {
+                        recipient: this.outgoingTx.recipient,
+                        amount: this.outgoingTx.amount
+                    })
+                    .then(function(response) {
+                        vm.error = null;
+                        vm.success = response.data.message;
+                        console.log(response.data);
+                        vm.funds = response.data.funds;
+                        vm.txLoading = false;
+                    })
+                    .catch(function (error) {
+                        vm.success = null;
+                        vm.error = error.response.data.message;
+                        vm.txLoading = false;
+                    });
+                },
+                onMine: function () {
+                    var vm = this
+                    axios.post('/mine')
+                        .then(function(response) {
+                            vm.error = null;
+                            vm.success = response.data.message;
+                            console.log(response.data);
+                            vm.funds = response.data.funds;
+                        })
+                        .catch(function (error) {
+                            vm.success = null;
+                            vm.error = error.response.data.message;
+                        });
+                },
+                onResolve: function() {
+                    var vm = this
+                    axios.post('/resolve-conflicts')
+                        .then(function(response) {
+                            vm.error = null;
+                            vm.success = response.data.message;
+                        })
+                        .catch(function (error) {
+                            vm.success = null;
+                            vm.error = error.response.data.message;
+                        });
+                },
+                onLoadData: function () {
+                    if (this.view === 'chain') {
+                        // Load blockchain data
+                        var vm = this
+                        this.dataLoading = true
+                        axios.get('/chain')
+                            .then(function (response) {
+                                vm.blockchain = response.data
+                                vm.dataLoading = false
+                            })
+                            .catch(function (error) {
+                                vm.dataLoading = false
+                                vm.error = 'Something went wrong.'
+                            });
+                    } else {
+                        // Load transaction data
+                        var vm = this
+                        axios.get('/transactions')
+                            .then(function (response) {
+                                vm.openTransactions = response.data
+                                vm.dataLoading = false
+                            })
+                            .catch(function (error) {
+                                vm.dataLoading = false
+                                vm.error = 'Something went wrong.'
+                            });
+                    }
+                }
             }
-        return jsonify(response), 409
-    block = blockchain.mine_block()
-    if block != None:
-        dict_block = block.__dict__.copy()
-        dict_block['transactions'] = [
-            tx.__dict__ for tx in dict_block['transactions']]
-        response = {
-            'message': 'Block added successfully.',
-            'block': dict_block,
-            'funds': blockchain.get_balance()
-        }
-        return jsonify(response), 201
-    else:
-        response = {
-            'message': 'Adding a block failed.',
-            'wallet_set_up': wallet.public_key != None
-        }
-        return jsonify(response), 500
+        })
+    </script>
+</body>
 
-
-@app.route('/resolve-conflicts', methods=['POST'])
-def resolve_conflicts():
-    replaced = blockchain.resolve()
-    if replaced:
-        response = {
-            'message': 'Chain was replaced!'
-            }
-    else:
-        response = {
-            'message': 'Local chain kept!'
-            }
-    return jsonify(response), 200
-
-
-@app.route('/transactions', methods=['GET'])
-def get_open_transaction():
-    transactions = blockchain.get_open_transactions()
-    dict_transactions = [tx.__dict__ for tx in transactions]
-    return jsonify(dict_transactions), 200
-
-
-@app.route('/chain', methods=['GET'])
-def get_chain():
-    chain_snapshot = blockchain.chain
-    dict_chain = [block.__dict__.copy() for block in chain_snapshot]
-    for dict_block in dict_chain:
-        dict_block['transactions'] = [
-            tx.__dict__ for tx in dict_block['transactions']]
-    return jsonify(dict_chain), 200
-
-
-@app.route('/node', methods=['POST'])
-def add_node():
-    #adding the node is possible without accesing the wallet so not cheking for the wallet here
-    values = request.get_json()
-    if not values:
-        response = {
-            'message': 'No data attached.'
-        }
-        return jsonify(response), 400
-    if 'node' not in values:
-        response = {
-            'message': 'No node data found.'
-        }
-        return jsonify(response), 400
-    node = values['node']
-    blockchain.add_peer_node(node)
-    response = {
-        'message': 'Node added successfully.',
-        'all_nodes': blockchain.get_peer_nodes()
-    }
-    return jsonify(response), 201
-
-
-@app.route('/node/<node_url>', methods=['DELETE'])
-def remove_node(node_url):
-    if node_url == '' or node_url == None:
-        response = {
-            'message': 'No node found.'
-        }
-        return jsonify(response), 400
-    blockchain.remove_peer_node(node_url)
-    response = {
-        'message': 'Node removed',
-        'all_nodes': blockchain.get_peer_nodes()
-    }
-    return jsonify(response), 200
-
-
-@app.route('/nodes', methods=['GET'])
-def get_nodes():
-    nodes = blockchain.get_peer_nodes()
-    response = {
-        'all_nodes': nodes
-    }
-    return jsonify(response), 200
-
-
-if __name__ == '__main__':
-    from argparse import ArgumentParser
-    parser = ArgumentParser()
-    parser.add_argument('-p', '--port', type=int, default=5000)
-    args = parser.parse_args()
-    port = args.port
-    wallet = Wallet(port)
-    blockchain = Blockchain(wallet.public_key, port)
-    app.run(host='0.0.0.0', port=port)
-'
+</html>
