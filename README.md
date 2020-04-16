@@ -1,13 +1,11 @@
 # DCS_BBN
 
-[![Tweet](https://img.shields.io/twitter/url/https/shields.io.svg?style=social)](https://twitter.com/intent/tweet?text=Decentralized %20Cloud%20Storage%20based%20on%20Blockchian%20please%20everyone%20check.%20@DhruvDoshi%20&url=https://github.com/DhruvDoshi/DCS_BBN) ![GitHub release](https://img.shields.io/github/release/DhruvDoshi/DCS_BBN.svg?style=popout-square)
+[![Tweet](https://img.shields.io/twitter/url/https/shields.io.svg?style=social)](https://twitter.com/intent/tweet?text=Decentralized%20cloud%20storage%20@DhruvDoshi%20&url=https://github.com/DhruvDoshi/DCS_BBN)
+![GitHub release](https://img.shields.io/github/release/DhruvDoshi/DCS_BBN.svg?style=popout-square)
 ![npm](https://img.shields.io/npm/dm/gitfolio.svg?style=popout-square) 
 ![GitHub top language](https://img.shields.io/github/languages/top/DhruvDoshi/DCS_BBN.svg?style=popout-square) 
 ![GitHub last commit](https://img.shields.io/github/last-commit/DhruvDoshi/DCS_BBN.svg?style=popout-square) 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=popout-square)](https://opensource.org/licenses/MIT)
-
-
-
 
 
 DCS-BBN is a Decentralized Cloud System based on Blockchian Networking. This is Pyhton developed code for the system.
