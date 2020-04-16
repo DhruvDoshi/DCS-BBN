@@ -7,7 +7,6 @@
 ![GitHub last commit](https://img.shields.io/github/last-commit/DhruvDoshi/DCS_BBN.svg?style=popout-square) 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=popout-square)](https://opensource.org/licenses/MIT)
 
-
 DCS-BBN is a Decentralized Cloud System based on Blockchian Networking. This is Pyhton developed code for the system.
 
   - Completely backed by Blockchain works on advanced Algorithms
