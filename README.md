@@ -2,6 +2,7 @@
 
 [![Tweet](https://img.shields.io/twitter/url/https/shields.io.svg?style=social)](https://twitter.com/intent/tweet?text=Decentralized%20cloud%20storage%20@DhruvDoshi%20&url=https://github.com/DhruvDoshi/DCS_BBN)
 ![GitHub release](https://img.shields.io/github/release/DhruvDoshi/DCS_BBN.svg?style=popout-square)
+[![Website shields.io](https://img.shields.io/website-up-down-green-red/http/shields.io.svg)](http://shields.io/)
 ![npm](https://img.shields.io/npm/dm/gitfolio.svg?style=popout-square) 
 ![GitHub top language](https://img.shields.io/github/languages/top/DhruvDoshi/DCS_BBN.svg?style=popout-square) 
 ![GitHub last commit](https://img.shields.io/github/last-commit/DhruvDoshi/DCS_BBN.svg?style=popout-square) 
