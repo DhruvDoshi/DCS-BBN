@@ -1,7 +1,7 @@
 # DCS_BBN
 
 [![Tweet](https://img.shields.io/twitter/url/https/shields.io.svg?style=social)](https://twitter.com/intent/tweet?text=Decentralized%20cloud%20storage%20@DhruvDoshi%20&url=https://github.com/DhruvDoshi/DCS_BBN)
-![GitHub release](https://img.shields.io/github/release/DhruvDoshi/DCS_BBN.svg?style=popout-square)
+[![GitHub release](https://img.shields.io/github/release/DhruvDoshi/DCS_BBN.svg?style=popout-square)](https://github.com/DhruvDoshi/DCS_BBN/releases)
 [![Website shields.io](https://img.shields.io/website-up-down-green-red/http/shields.io.svg)](http://dcs-bbn.com/)
 [![HitCount](http://hits.dwyl.io/DhruvDoshi/DCS_BBN.svg)](http://hits.dwyl.io/DhruvDoshi/DCS_BBN)
 [![made-with-python](https://img.shields.io/badge/Made%20with-Python-1f425f.svg)](https://www.python.org/)
