@@ -4,7 +4,7 @@
 ![GitHub release](https://img.shields.io/github/release/DhruvDoshi/DCS_BBN.svg?style=popout-square)
 [![Website shields.io](https://img.shields.io/website-up-down-green-red/http/shields.io.svg)](http://shields.io/)
 ![npm](https://img.shields.io/npm/dm/gitfolio.svg?style=popout-square) 
-<!-- ![GitHub top language](https://img.shields.io/github/languages/top/DhruvDoshi/DCS_BBN.svg?style=popout-square) -->
+![GitHub top language](https://img.shields.io/github/languages/top/DhruvDoshi/DCS_BBN.svg?style=popout-square)
 [![made-with-python](https://img.shields.io/badge/Made%20with-Python-1f425f.svg)](https://www.python.org/)
 ![GitHub last commit](https://img.shields.io/github/last-commit/DhruvDoshi/DCS_BBN.svg?style=popout-square) 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=popout-square)](https://opensource.org/licenses/MIT)
