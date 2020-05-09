@@ -108,7 +108,7 @@ See also the list of [contributors](https://github.com/DhruvDoshi/DCS_BBN/contri
 
 ## License
 
-Dhrvu Doshi, [DCS-BBN](www.dcs-bbn.com)
+Dhrvu Doshi, [DCS-BBN](http://dcs-bbn.com/)
 
 *This is completely open source system and we are ready to upgrade our system with your help, please fork this repository and work on this*
 
