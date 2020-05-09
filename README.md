@@ -58,7 +58,7 @@ DCS-BBN uses a number of open source projects to work properly:
 
 And of course DCS-BBN itself is open source with a [public repository ](https://www.dcs-bbn.com/) on GitHub.
 
-### Installation
+## Installation
 We have multiple ways to install the project on the systems, prefer any of your choice
 
 #### Docker
