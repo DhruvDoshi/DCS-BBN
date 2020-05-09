@@ -29,21 +29,6 @@
 
 </p>
 
-## 📝 Table of Contents
-
-- [About](#about)
-- [Tech](#tech  )
-- [Getting Started](#getting_started)
-- [Deployment](#deployment)
-- [Usage](#usage)
-- [Built Using](#built_using)
-- [TODO](../TODO.md)
-- [Contributing](../CONTRIBUTING.md)
-- [Authors](#authors)
-- [Acknowledgments](#acknowledgement)
-
-
-
 ## 🧐 About! <a name = "about"></a>
 
   - Completely Decentralized system gives no single point of failure 
