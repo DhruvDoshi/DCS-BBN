@@ -20,14 +20,12 @@
 
 ---
 
-<p align="center"> Complete Cryptocurrency made with c++ and Litecoin. Used on platform named DCS-BBN.
-    <br> 
-  DCS-BBN is a Decentralized Cloud System based on Blockchian Networking. This is Pyhton developed code for the system.
-
-  - Completely backed by Blockchain works on advanced Algorithms
-  - Developed in Pyhton Language with Flask Framework
-  - Deployed within local system 
-  - Need ERC-20 Contracts and Ethereum test networks for inter-platform transfer
+<p align="center"> Complete Cryptocurrency made with c++ and Litecoin. Used on platform named DCS-BBN.<br> 
+  DCS-BBN is a Decentralized Cloud System based on Blockchian Networking. This is Pyhton developed code for the system.<br>
+Completely backed by Blockchain works on advanced Algorithms
+<br>  Developed in Pyhton Language with Flask Framework
+ <br> Deployed within local system 
+<br>Need ERC-20 Contracts and Ethereum test networks for inter-platform transfer
 
 </p>
 
