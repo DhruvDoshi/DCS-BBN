@@ -59,7 +59,7 @@ DCS-BBN uses a number of open source projects to work properly:
 And of course DCS-BBN itself is open source with a [public repository ](https://www.dcs-bbn.com/) on GitHub.
 
 
-### Prerequisites
+### 🔧 Prerequisites
 
 DCS-BBN needs following requirenmetns to be fulfilled.
   - [Node.js](https://nodejs.org/) v4+
@@ -70,10 +70,10 @@ DCS-BBN needs following requirenmetns to be fulfilled.
 
 
 
-## 🔧 Installation
+## 🚀 Installation
 We have multiple ways to install the project on the systems, prefer any of your choice
 
-#### Docker
+### Docker
 Install docker on to your system
   - [Windows OS](https://docs.docker.com/docker-for-windows/install/)  Pro, Enterprise and Education only.
   - [Windows OS] -- Home Verison use Docker [Toolbox](https://docs.docker.com/toolbox/toolbox_install_windows/)
@@ -89,7 +89,7 @@ $ docker run -it -p 5000:5000 dhruv25071999/dcs-bbn
 This command will let user use the 5000 port for the webpreview
 ```
 
-Install the dependencies and devDependencies and start the server.
+### Install the dependencies and devDependencies and start the server.
 
 ```sh
 $ git clone https://github.com/DhruvDoshi/DCS_BBN.git
