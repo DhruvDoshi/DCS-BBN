@@ -106,11 +106,9 @@ open `http://localhost:5000` in web browser along with `http://localhost:5001`
 See also the list of [contributors](https://github.com/DhruvDoshi/DCS_BBN/contributors) who participated in this project.
 
 
-License
-----
+## License
 
-MIT
-
+Dhrvu Doshi, [DCS-BBN](www.dcs-bbn.com)
 
 *This is completely open source system and we are ready to upgrade our system with your help, please fork this repository and work on this*
 
