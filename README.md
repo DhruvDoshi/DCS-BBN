@@ -99,6 +99,13 @@ $ python3 node.py -p 5001
 open `http://localhost:5000` in web browser along with `http://localhost:5001`
 ```
 
+## ✍️ Authors <a name = "authors"></a>
+
+- [@DhruvDoshi](https://github.com/DhruvDoshi) - Idea & Initial work
+
+See also the list of [contributors](https://github.com/DhruvDoshi/DCS_BBN/contributors) who participated in this project.
+
+
 License
 ----
 
