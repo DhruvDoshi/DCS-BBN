@@ -1,3 +1,28 @@
+<p align="center">
+  <a href="" rel="noopener">
+ <img width=200px height=200px src="https://i.imgur.com/6wj0hh6.jpg" alt="Project logo"></a>
+</p>
+
+<h3 align="center">DCS-BBN</h3>
+
+<div align="center">
+
+[![Tweet](https://img.shields.io/twitter/url/https/shields.io.svg?style=social)](https://twitter.com/intent/tweet?text=Decentralized%20cloud%20storage%20@DhruvDoshi%20&url=https://github.com/DhruvDoshi/DCS_BBN)
+[![GitHub release](https://img.shields.io/github/release/DhruvDoshi/DCS_BBN.svg?style=popout-square)](https://github.com/DhruvDoshi/DCS_BBN/releases)
+[![Website shields.io](https://img.shields.io/website-up-down-green-red/http/shields.io.svg)](http://dcs-bbn.com/)
+[![HitCount](http://hits.dwyl.io/DhruvDoshi/DCS_BBN.svg)](http://hits.dwyl.io/DhruvDoshi/DCS_BBN)
+[![made-with-python](https://img.shields.io/badge/Made%20with-Python-1f425f.svg)](https://www.python.org/)
+![GitHub last commit](https://img.shields.io/github/last-commit/DhruvDoshi/DCS_BBN.svg?style=popout-square)
+[![GitHub issues-closed](https://img.shields.io/github/issues-closed/DhruvDoshi/DCS_BBN.svg)](https://github.com/DhruvDoshi/DCS_BBN/issues)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=popout-square)](https://opensource.org/licenses/MIT)
+
+</div>
+
+---
+
+<p align="center"> Complete Cryptocurrency made with c++ and Litecoin. Used on platform named DCS-BBN.
+    <br> 
+</p>
 # DCS_BBN
 
 [![Tweet](https://img.shields.io/twitter/url/https/shields.io.svg?style=social)](https://twitter.com/intent/tweet?text=Decentralized%20cloud%20storage%20@DhruvDoshi%20&url=https://github.com/DhruvDoshi/DCS_BBN)
