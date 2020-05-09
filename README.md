@@ -58,6 +58,18 @@ DCS-BBN uses a number of open source projects to work properly:
 
 And of course DCS-BBN itself is open source with a [public repository ](https://www.dcs-bbn.com/) on GitHub.
 
+
+### Prerequisites
+
+DCS-BBN needs following requirenmetns to be fulfilled.
+  - [Node.js](https://nodejs.org/) v4+
+  - [Python 3](https://python.org/) v3.6+
+  - [Git ](https://git-scm.com/) v2.26.0+
+  - [pip ](https://pip.pypa.io/en/stable/) v19+
+  - [Docker ](https://docs.docker.com/release-notes/) v19.03.8+
+
+
+
 ## 🔧 Installation
 We have multiple ways to install the project on the systems, prefer any of your choice
 
@@ -77,15 +89,6 @@ $ docker run -it -p 5000:5000 dhruv25071999/dcs-bbn
 This command will let user use the 5000 port for the webpreview
 ```
 
-
-DCS-BBN needs following requirenmetns to be fulfilled.
-  - [Node.js](https://nodejs.org/) v4+
-  - [Python 3](https://python.org/) v3.6+
-  - [Git ](https://git-scm.com/) v2.26.0+
-  - [pip ](https://pip.pypa.io/en/stable/) v19+
-  - [Docker ](https://docs.docker.com/release-notes/) v19.03.8+
- 
-   
 Install the dependencies and devDependencies and start the server.
 
 ```sh
