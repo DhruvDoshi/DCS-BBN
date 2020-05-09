@@ -29,8 +29,22 @@
 
 </p>
 
+## 📝 Table of Contents
 
-# New Features!
+- [About](#about)
+- [Tech](#tech  )
+- [Getting Started](#getting_started)
+- [Deployment](#deployment)
+- [Usage](#usage)
+- [Built Using](#built_using)
+- [TODO](../TODO.md)
+- [Contributing](../CONTRIBUTING.md)
+- [Authors](#authors)
+- [Acknowledgments](#acknowledgement)
+
+
+
+## 🧐 About! <a name = "about"></a>
 
   - Completely Decentralized system gives no single point of failure 
   - Enhaced Security and Cost Effective Ecosystem
@@ -44,7 +58,7 @@ You can also:
   - Work with the future technology in the cloud systems.
 
 
-### Tech
+## 🏁 Tech <a name = "tech"></a>
 
 DCS-BBN uses a number of open source projects to work properly:
 
@@ -61,6 +75,7 @@ And of course DCS-BBN itself is open source with a [public repository ](https://
 
 ### Installation
 We have multiple ways to install the project on the systems, prefer any of your choice
+
 #### Docker
 Install docker on to your system
   - [Windows OS](https://docs.docker.com/docker-for-windows/install/)  Pro, Enterprise and Education only.
